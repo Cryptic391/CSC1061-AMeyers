@@ -1,6 +1,7 @@
 
 public class Car {
 	
+	private static final int MAX_WHEELS =4;
 	// Data Members
 	
 	private String color;
@@ -8,6 +9,12 @@ public class Car {
 	private int mileage;
 	private int groundClearanceFt;
 	private int groundClearanceIn;
+	private boolean isClean = false;
+	private Radio radio = new Radio();
+	private Wheel[] wheels = new Wheel[MAX_WHEELS];
+	
+	
+	private static int count = 0;
 	
 	// Constructors
 	
@@ -15,17 +22,20 @@ public class Car {
 		color  = rcolor;
 		amountOfGas = 1.0;
 		mileage = 5;
+		count++;
 	}
 	
 	public Car(String color, double gas) {
 		this.color = color;
 		amountOfGas = gas;
 		mileage = 0;
+		count++;
 		
 	}
 	
 	// no arg constructor
 	public Car() {
+		count++;
 	}
 	
 	
@@ -62,13 +72,31 @@ public class Car {
 	public int getGroundClearanceIn() {
 		return groundClearanceIn;
 	}
+	
+	public static int getCount() {
+		return count;
+	}
+	
+	public boolean getClean() {
+		return isClean;
+	}
+	
+	public Radio getRadio(){
+		return radio;
+	}
+	
+	public Wheel[] getWheels() {
+		return wheels;
+	}
 
 	
 
 	
 	// Other Methods
 	
-	//Methods
+
+
+		//Methods
 		public void drive(int miles) {
 			for(int i =0; i< miles;i++) {
 				System.out.print("+");
@@ -77,8 +105,16 @@ public class Car {
 			}
 			System.out.println();
 		}
+		
+		public void selfCleanCar() {
+			isClean = true;
+			
+		}
 	
-	
+		public static void cleanCar(Car car) {
+			car.isClean = true;
+			
+		}
 	
 	
 	
