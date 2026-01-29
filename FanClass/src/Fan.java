@@ -7,19 +7,14 @@ public class Fan {
 	
 	private static int id = 0;
 	
-	private int speed;
-	private boolean on;
-	private double radius;
-	private String color;
-	
+	private int speed = 1;
+	private boolean on = false;
+	private double radius = 5;
+	private String color = "Blue";
 	
 
 
 	public Fan() {
-		this.speed = 1;
-		this.on = false;
-		this.radius = 5;
-		this.color = "blue";
 		id++;
 	}
 	
