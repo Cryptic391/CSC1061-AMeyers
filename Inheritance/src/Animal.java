@@ -49,7 +49,7 @@ public class Animal {
 	
 	@Override
 	public String toString() {
-		return " [name=" + name + ", weight=" + weight + ", height=" + height ;
+		return " Name= " + name + ", weight=" + weight + ", height=" + height ;
 	}
 	
 	

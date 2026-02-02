@@ -57,11 +57,12 @@ public class Fan {
 
 	@Override
 	public String toString() {
-		if(isOn()) {
-			return "Fan " + getId() + " Speed:" + speed + " Color:" + color + " Radius:" + radius;
+		System.out.print("Fan " + getId() + " Speed:" + speed + " Color:" + color + " Radius:" + radius);
+		if(isOn()== false) {
+			return " This fan is off.";
 		}
- 		else {
- 			return "Fan " + getId() + " Speed:" + speed + " Color:" + color + " Radius:" + radius + " This fan is off.";
+		else {
+			return "";
 		}
 		
 	}

@@ -22,7 +22,7 @@ public class Horse extends Animal {
 
 	@Override
 	public String toString() {
-		return "Horse " + super.toString() + " Speed=" + speed ;
+		return "Horse:" + super.toString() + " Speed=" + speed ;
 	}
 	
 	

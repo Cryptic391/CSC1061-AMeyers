@@ -6,10 +6,17 @@ public class Cat extends Animal {
 		super("Cat", 2.0, 3.0);
 		this.lengthOfWiskers = lengthOfWiskers;
 	}
+	
+
+	public int getLengthOfWiskers() {
+		return lengthOfWiskers;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "Cat" + super.toString() +  " Length Of Wiskers= " + lengthOfWiskers;
+		return "Cat:" + super.toString() +  " Length Of Wiskers= " + lengthOfWiskers;
 	}
 	
 	@Override

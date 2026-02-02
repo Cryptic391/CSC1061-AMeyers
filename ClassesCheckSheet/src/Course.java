@@ -5,7 +5,11 @@ public class Course {
 	private int maxStudents;
 	private int credits;
 	
-	private Course() {
+	public Course() {
+		this.courseNum = "";
+		this.numStudents = 0;
+		this.maxStudents = 0;
+		this.credits = 0;
 		
 	}
 
@@ -51,8 +55,8 @@ public class Course {
 
 	@Override
 	public String toString() {
-		return "Course Num=" + courseNum + "\nNum Students=" + numStudents + "\nMax Students=" + maxStudents
-				+ "\nCredits=" + credits;
+		return "\nCourse Number= " + courseNum + "\nNumber Students= " + numStudents + "\nMax Students= " + maxStudents
+				+ "\nCredits= " + credits;
 	}
 	
 	
