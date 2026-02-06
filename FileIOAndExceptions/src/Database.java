@@ -52,7 +52,7 @@ public class Database {
 	public void read() {
 		String line;
 		while(reader.hasNext()) {
-			
+			System.out.println();
 		}
 		
 	}
