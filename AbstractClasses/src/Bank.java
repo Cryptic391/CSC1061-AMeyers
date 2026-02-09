@@ -1,0 +1,18 @@
+
+public class Bank extends FinancialInstitution {
+
+	
+	public Bank(String name) {
+		super(name);
+	}
+
+	
+	@Override
+	public double getInterestRate() {
+		return 0.06;
+	}
+	
+	public void setSavings() {
+		
+	}
+}
