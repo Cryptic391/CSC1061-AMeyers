@@ -4,7 +4,7 @@ import java.util.List;
 
 public class TestFI {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CloneNotSupportedException {
 		
 			
 		Bank b1 = new Bank("My Bank");
@@ -27,12 +27,29 @@ public class TestFI {
 		}
 		
 		
-//		Collections.sort((List<T>) fiList);
+		Collections.sort(fiList, Collections.reverseOrder());
+		
+		for(FinancialInstitution fi: fiList) {
+			System.out.println(fi);
+		}
+		
+		b1.setAddress(new Address());
+		b1.getAddress().street = "555 Merry Way";
+		
+		FinancialInstitution b2 = null;
+		if(b1 instanceof Cloneable) {
+			b2 = b1.clone();
+		}
+		
+		b2.setFiId(4);
+		b2.setFiName("Cloned Bank");
+		b2.getAddress().street = "666 Spoopy St";
+		
+		System.out.println(b1 + " " + b1.getAddress().street);
+		System.out.println(b2 + " " + b2.getAddress().street);
 		
 		
 		
-		
-		;
 	
 		
 	}

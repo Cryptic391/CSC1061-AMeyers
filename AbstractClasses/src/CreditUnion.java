@@ -13,4 +13,7 @@ public class CreditUnion extends FinancialInstitution {
 		return 0.0567;
 	}
 
+
+
+
 }
