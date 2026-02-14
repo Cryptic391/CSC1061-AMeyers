@@ -1,29 +1,29 @@
 
 public class BasePlusCommisionEmployee extends CommissionEmployee{
-	private double basePay;
+	private double baseSalary;
 
 	public BasePlusCommisionEmployee(String firstName, String lastName, long ssn, int grossSales, double commissionRate,
 			double basePay) {
 		super(firstName, lastName, ssn, grossSales, commissionRate);
-		this.basePay = basePay;
+		this.baseSalary = basePay;
 	}
 
-	public double getBasePay() {
-		return basePay;
+	public double getBaseSalary() {
+		return baseSalary;
 	}
 
-	public void setBasePay(double basePay) {
-		this.basePay = basePay;
+	public void setBaseSalary(double basePay) {
+		this.baseSalary = basePay;
 	}
 	
 	@Override
 	double getPaymentAmount() {
-		return (basePay + getCommissionRate());
+		return (baseSalary + super.getPaymentAmount());
 	}
 	
 	@Override
 	public String toString() {
-		return super.toString() + "\nPayment Amount: $" + getPaymentAmount();
+		return super.toString();
 	}
 	
 	

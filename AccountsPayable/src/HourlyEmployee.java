@@ -1,22 +1,22 @@
 
 public class HourlyEmployee extends Employee{
-	private int hours;
+	private double hours;
 	private double hourlyWage;
 	
 	
-	public HourlyEmployee(String firstName, String lastName, long ssn, int hours, double hourlyWage) {
+	public HourlyEmployee(String firstName, String lastName, long ssn, double hours, double hourlyWage) {
 		super(firstName, lastName, ssn);
 		this.hours = hours;
 		this.hourlyWage = hourlyWage;
 	}
 
 
-	public int getHours() {
+	public double getHours() {
 		return hours;
 	}
 
 
-	public void setHours(int hours) {
+	public void setHours(double hours) {
 		this.hours = hours;
 	}
 
