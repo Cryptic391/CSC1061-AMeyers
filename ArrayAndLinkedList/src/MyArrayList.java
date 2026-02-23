@@ -35,9 +35,32 @@ public class MyArrayList<T> implements List<T>{
 
 	@Override
 	public Iterator<T> iterator() {
-		return null;
+		return new MyIterator();
 	}
 
+	private class MyIterator implements Iterator<T>{
+		
+		private int index = 0;
+
+		@Override
+		public boolean hasNext() {
+			if(index < size) {
+				return true;
+			}
+			return false;
+		}
+
+		@Override
+		public T next() {
+			if(index >= size) {
+				throw new IndexOutOfBoundsException("Index exceeds size");
+			}
+			return array[index++];
+		}
+		
+	}
+	
+	
 	@Override
 	public Object[] toArray() {
 		return null;
@@ -65,7 +88,12 @@ public class MyArrayList<T> implements List<T>{
 
 	@Override
 	public boolean remove(Object o) {
-		return false;
+		int index = indexOf(o);
+		if(index < 0) {
+			return false;
+		}
+		remove(index);
+		return true;
 	}
 
 	@Override
@@ -85,7 +113,13 @@ public class MyArrayList<T> implements List<T>{
 
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		return false;
+		boolean flag = false;
+		for(Object obj: c) {
+			if(remove(obj)) {
+				flag = true;
+			}
+		}
+		return flag;
 	}
 
 	@Override
@@ -101,7 +135,7 @@ public class MyArrayList<T> implements List<T>{
 	@Override
 	public T get(int index) {
 		if(index > 0 || index < size) {
-			throw new IndexOutOfBoundsException();
+//			throw new IndexOutOfBoundsException();
 		}
 		
 		return array[index];
@@ -116,22 +150,52 @@ public class MyArrayList<T> implements List<T>{
 
 	@Override
 	public void add(int index, T element) {
+		if(index < 0 || index > size) {
+			throw new IndexOutOfBoundsException();
+		}
+		add(element);
 		
+		for(int i =size -1; i > index; i-- ) {
+			array[i] = array[i-1];
+		}
+		
+		array[index] = element;
 	}
 
 	@Override
 	public T remove(int index) {
-		return null;
+		T old = get(index);
+		for(int i = index; i < size; i++) {
+			array[i] = array[i+1];
+		}
+		return old;
 	}
 
 	@Override
 	public int indexOf(Object o) {
-		return 0;
+		for(int i =0;i<size;i++) {
+			if(equals(array[i],o)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	private boolean equals(Object o1, Object o2) {
+		if(o1 == null || o2 == null) {
+			return false;
+		}
+		return o1.equals(o2);
 	}
 
 	@Override
 	public int lastIndexOf(Object o) {
-		return 0;
+		for(int i = size; i >= 0; i--) {
+			if(equals(array[i],o)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	@Override
