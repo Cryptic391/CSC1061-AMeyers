@@ -28,6 +28,34 @@ public class ListTest {
 			Integer ans = (Integer) iter.next();
 			System.out.print(ans + " ");
 		}
+		System.out.println();
+		
+		//Linked List
+		
+		List<Integer> ll = new MyDoubleLinkedList<>();
+		ll.add(6);
+		ll.add(7);
+		ll.add(8);
+		ll.add(9);
+		ll.add(10);
+		
+		for(int i = 0; i < ll.size(); i++) {
+			System.out.print(ll.get(i) + " ");
+		}
+		System.out.println();
+		
+		iter = ll.iterator();
+		while(iter.hasNext()) {
+			System.out.print(iter.next() + " ");
+		}
+		System.out.println();
+		
+		for(Integer x : ll) {
+			System.out.print(x + " ");
+		}
+		System.out.println();
+		
+		
 
 	}
 
