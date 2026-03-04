@@ -197,13 +197,38 @@ public class MyDoubleLinkedList<E> implements List<E> {
 			if(newNode.next != null) {
 				newNode.next.prev = newNode;
 			}
+			if (prevNode == tail) {
+				tail = newNode;
+			}
 		}
+		size++;
 	}
 
 	@Override
 	public E remove(int index) {
+		E data = get(index);
 		
-		return null;
+		if (index == 0) {
+			if (head == tail) {
+				tail = null;
+			}
+			head = head.next;
+			if (head != null) {
+				head.prev = null;
+			}
+		}
+		else {
+			Node prevNode = getNode(index - 1);
+			prevNode.next = prevNode.next.next;
+			if (prevNode.next != null) {
+				prevNode.next.prev = prevNode;
+			}
+			else {
+				tail = prevNode;
+			}
+		}
+		size--;
+		return data;
 	}
 
 	@Override
@@ -219,8 +244,13 @@ public class MyDoubleLinkedList<E> implements List<E> {
 
 	@Override
 	public int lastIndexOf(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+		Node node = tail;
+		for (int i = size - 1; i >= 0; i--) {
+			if (((E)o).equals(node.data)) {
+				return i;
+			}			
+		}
+		return -1;
 	}
 
 	@Override
