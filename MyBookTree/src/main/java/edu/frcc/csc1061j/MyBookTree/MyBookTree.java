@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Queue;
 
 public class MyBookTree implements Iterable<MyBookNode>{
 	private MyBookNode root;
@@ -52,10 +53,40 @@ public class MyBookTree implements Iterable<MyBookNode>{
 
 	@Override
 	public Iterator<MyBookNode> iterator() {
-		return new MyBookIterator();
+		return new RecursiveIterator();
 	}
 	
-	private class MyBookIterator implements Iterator{
+	private class RecursiveIterator implements Iterator {
+		Queue<MyBookNode> queue = new ArrayDeque<>();
+		
+		public RecursiveIterator() {
+			preorder(root);
+		}
+		
+		private void preorder(MyBookNode node) {
+			queue.add(node);
+			if(node.getChildNodes() == null || node.getChildNodes().isEmpty()) {
+				return;
+			}
+			for(MyBookNode child : node.getChildNodes()) {
+				preorder(child);
+			}
+		}
+
+		@Override
+		public boolean hasNext() {
+			return !queue.isEmpty();
+		}
+
+		@Override
+		public Object next() {
+			return queue.remove();
+		}
+		
+	}
+	
+	
+	private class MyBookIterator implements Iterator {
 		Deque<MyBookNode> stack;
 		
 		public MyBookIterator() {
