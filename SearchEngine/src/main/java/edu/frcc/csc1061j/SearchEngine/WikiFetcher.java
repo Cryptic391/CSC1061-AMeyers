@@ -84,13 +84,5 @@ public class WikiFetcher {
 	 * @param args
 	 * @throws IOException
 	 */
-	public static void main(String[] args) throws IOException {
-		WikiFetcher wf = new WikiFetcher();
-		String url = "https://en.wikipedia.org/wiki/Java_(programming_language)";
-		Elements paragraphs = wf.readWikipedia(url);
 
-		for (Element paragraph: paragraphs) {
-			System.out.println(paragraph);
-		}
-	}
 }
