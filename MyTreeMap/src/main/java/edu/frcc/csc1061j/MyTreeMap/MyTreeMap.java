@@ -108,21 +108,25 @@ public class MyTreeMap<K extends Comparable<K>,V> implements Map<K,V>, Iterable<
 	@Override
 	public V remove(Object key) {
 		Comparable<K> k = (Comparable<K>) key;		
+		V value = null;
 		
 		Node current = root;
 		Node parent = null;
 		
 		while(current != null) {
 			if(k.compareTo(current.key)<0) {
+				parent = current;
 				current = current.lChild;
 			}
 			else if (k.compareTo(current.key)>0) {
+				parent = current;
 				current = current.rChild;
 			}
 			else {
 				value = current.value;
 				break;
 			}
+		}
 			
 			if(current.lChild == null && current.rChild == null) {
 				if(current == parent.lChild) {
@@ -132,10 +136,20 @@ public class MyTreeMap<K extends Comparable<K>,V> implements Map<K,V>, Iterable<
 					parent.rChild = null;
 				}
 			}
-			
+			//case 1 no children
+				if(current.lChild == null && current.rChild == null) {
+					if(current == parent.lChild) {
+						parent.lChild = null;
+					}
+					else {
+						parent.rChild = null;
+					}
+				}
+				
+			//case 3 one child
 			else if(current.lChild == null) {
 				if(current == parent.lChild) {
-					parent.lChild = current.rChild;
+					parent.lChild = current.rChild; 
 				}
 				else {
 					parent.rChild = current.rChild;
@@ -149,10 +163,26 @@ public class MyTreeMap<K extends Comparable<K>,V> implements Map<K,V>, Iterable<
 					parent.rChild = current.lChild;
 				}
 			}
-		}
 			
+			if(current.lChild != null && current.rChild != null) {
+				Node inOrderPred = current.lChild;
+				Node parentOfInOrderPred = current;
+				while(inOrderPred.rChild != null) {
+					parentOfInOrderPred = inOrderPred.rChild;
+					inOrderPred = inOrderPred.rChild;
+				}
+				current.key = inOrderPred.key;
+				current.value = inOrderPred.value;
+				
+				if(parentOfInOrderPred == current) {
+					current.lChild = inOrderPred.lChild;
+				}
+				else {
+					parentOfInOrderPred.rChild = null;
+				}
+			}
 			
-		return null;
+		return value;
 	}
 
 	@Override
@@ -163,7 +193,8 @@ public class MyTreeMap<K extends Comparable<K>,V> implements Map<K,V>, Iterable<
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+		root = null;
+		size = 0;
 		
 	}
 
